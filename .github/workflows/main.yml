@@ -1,0 +1,15 @@
+name: "This is the Hemant Workflow"
+
+on:
+  push:
+    branches: main
+
+jobs:
+
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "This is Task 1"
+        run: echo "HEMANT CHOWDARY"
+      - name: "This is Task 2"
+        run: echo "name $USER"
