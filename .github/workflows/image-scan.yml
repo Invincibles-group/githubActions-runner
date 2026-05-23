@@ -1,0 +1,25 @@
+# uses Trivy to scan the built Docker image for vulnerabilities. Trivy is a popular open-source vulnerability scanner for container images. This workflow logs in to Docker Hub, sets up Trivy, and then scans the specified Docker image for vulnerabilities with a severity level of HIGH or CRITICAL.
+
+name: Image Scanning
+on:
+  workflow_call:
+jobs:
+  image-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ VARS.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Set up Trivy
+        uses: aquasecurity/trivy-action@v0.33.1
+        with:
+          severity: 'CRITICAL' # Only report vulnerabilities with a severity of CRITICAL or higher
+          exit-code: '1' # Set exit code to 1 if vulnerabilities are found
+
+      
