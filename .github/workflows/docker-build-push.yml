@@ -25,5 +25,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ VARS.DOCKERHUB_USER }}/github-actions-runner:${{ github.sha }}
-                ${{ VARS.DOCKERHUB_USER }}/github-actions-runner:latest
+          tags: |
+            ${{ VARS.DOCKERHUB_USER }}/github-actions-runner:${{ github.sha }}
+            ${{ VARS.DOCKERHUB_USER }}/github-actions-runner:latest
