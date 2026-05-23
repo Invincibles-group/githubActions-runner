@@ -1,0 +1,2 @@
+# scan Dockerfiles for best practices and common issues & CVEs
+name: Docker Lint

@@ -1,0 +1,32 @@
+# linting, code formatting, and static analysis should be performed on every pull request to maintain code quality
+# Lint - flake8 is a popular linter for Python that checks for style and programming errors in your code. This workflow uses the flake8 action to run flake8 on your code and report any findings.
+# bandit - bandit is a security linter for Python that checks for common security issues in your code. This workflow uses the bandit action to run bandit on your code and report any findings.
+name: Code Quality
+
+on: 
+  workflow_call:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.13, 3.12, 3.11]
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: setup python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          
+      - name: install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: run linter
+        run: flake8 app.py
+      
+      - name: run SAST
+        run: bandit -r app.py

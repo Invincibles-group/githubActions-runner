@@ -1,0 +1,3 @@
+# packages and dependencies should be regularly scanned for vulnerabilities
+# This workflow uses the trivy action to scan for vulnerabilities in your dependencies and report any findings
+name: dependency scan
