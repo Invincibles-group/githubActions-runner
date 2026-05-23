@@ -12,5 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get public IP
+        run: curl -s https://ipify.org
+
       - name: deploy with docker compose
         run: docker compose up -d --build
