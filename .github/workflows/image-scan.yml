@@ -13,12 +13,13 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ VARS.DOCKERHUB_USER }}
+          username: ${{ vars.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up Trivy
         uses: aquasecurity/trivy-action@v0.33.1
         with:
+          image-ref: ${{ vars.DOCKERHUB_USER }}/github-actions-runner:${{ github.sha }} # The Docker image to scan, passed as a secret
           severity: 'CRITICAL' # Only report vulnerabilities with a severity of CRITICAL or higher
           exit-code: '1' # Set exit code to 1 if vulnerabilities are found
 
