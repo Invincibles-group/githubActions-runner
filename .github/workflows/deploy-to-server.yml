@@ -38,7 +38,7 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             echo "Running application with Docker Compose..."
-            sudo apt-get install docker.io docker-compose-v2 -y
+            sudo apt-get install && sudo apt-get install docker.io docker-compose-v2 -y
             sudo usermod -aG docker $USER && newgrp docker
             export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
             export DOCKER_TAG=${{ github.sha }}
