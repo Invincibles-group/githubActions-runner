@@ -1,0 +1,5 @@
+services:
+  web:
+    image: ${{ VARS.DOCKERHUB_USER }}/github-actions-runner:latest
+    ports:
+      - "8082:8082"
