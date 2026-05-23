@@ -3,19 +3,16 @@ name: DevSecOps End-to-End Pipeline
 on:
   workflow_dispatch:
 jobs:
-  devsecops-pipeline:
-    runs-on: ubuntu-latest
-    
-    code-quality:
-      uses: ./.github/workflows/code-quality.yml
+  code-quality:
+    uses: ./.github/workflows/code-quality.yml
 
-    secret-scan:
-      uses: ./.github/workflows/secret-scan.yml
-    
-    dependency-scan:
-      uses: ./.github/workflows/dependency-scan.yml
+  secret-scan:
+    uses: ./.github/workflows/secret-scan.yml
 
-    docker-scan:
-      uses: ./.github/workflows/docker-lint.yml
+  dependency-scan:
+    uses: ./.github/workflows/dependency-scan.yml
+
+  docker-scan:
+    uses: ./.github/workflows/docker-lint.yml
     
 
