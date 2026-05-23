@@ -24,9 +24,13 @@ jobs:
     uses: ./.github/workflows/docker-build-push.yml
     secrets: inherit
 
+  #image Scan with Trivy after the image is built and pushed to Docker Hub
   trivy-scan:
     needs: [build]
     uses: ./.github/workflows/image-scan.yml
     secrets: inherit
-    
 
+  deploy:
+    needs: [trivy-scan]
+    uses: ./.github/workflows/deploy-to-server.yml
+    secrets: inherit
