@@ -39,10 +39,9 @@ jobs:
           script: |
             echo "Running application with Docker Compose..."
             sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
-            sudo usermod -aG docker $USER && newgrp docker
             export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
             export DOCKER_TAG=${{ github.sha }}
-            echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ vars.DOCKERHUB_USER }} --password-stdin
-            cd ~/app && docker compose down && docker compose up -d --build --force-recreate --pull always
+            echo ${{ secrets.DOCKERHUB_TOKEN }} | sudo docker login -u ${{ vars.DOCKERHUB_USER }} --password-stdin
+            cd ~/app && sudo docker compose down && sudo docker compose up -d --pull always
 
 
