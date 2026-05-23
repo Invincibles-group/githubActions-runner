@@ -11,4 +11,3 @@ def hello_world():
 def health():
     return 'Server is up and running'
 
-
