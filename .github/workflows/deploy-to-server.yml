@@ -42,9 +42,7 @@ jobs:
           script: |
             echo "Running application with Docker Compose..."
             sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
-            export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
-            export DOCKER_TAG=${{ github.sha }}
             echo ${{ secrets.DOCKERHUB_TOKEN }} | sudo docker login --username ${{ vars.DOCKERHUB_USER }} --password-stdin
-            cd ~/app && sudo -E docker compose down && sudo -E docker compose up -d --pull always
+            cd ~/app && sudo DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }} DOCKER_TAG=${{ github.sha }} docker compose down && sudo DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }} DOCKER_TAG=${{ github.sha }} docker compose up -d --pull always
 
 
