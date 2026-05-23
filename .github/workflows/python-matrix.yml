@@ -1,8 +1,9 @@
 name: Python Lint
 
 on: 
-  push:
-    branches: [main]
+  workflow_dispatch
+  #push:
+  #  branches: [main]
 
 jobs:
   validate:
