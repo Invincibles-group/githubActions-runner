@@ -17,7 +17,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up Trivy
-        uses: aquasecurity/trivy-action@v0.33.1
+        uses: aquasecurity/trivy-action@v0.65.0
         with:
           image-ref: ${{ vars.DOCKERHUB_USER }}/github-actions-runner:${{ github.sha }} # The Docker image to scan, passed as a secret
           severity: 'CRITICAL' # Only report vulnerabilities with a severity of CRITICAL or higher
