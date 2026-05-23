@@ -8,15 +8,14 @@ jobs:
     
     code-quality:
       uses: ./.github/workflows/code-quality.yml
+
+    secret-scan:
+      uses: ./.github/workflows/secret-scan.yml
     
     dependency-scan:
-      needs: code-quality
       uses: ./.github/workflows/dependency-scan.yml
 
-    docker-lint:
-      needs: dependency-scan
+    docker-scan:
       uses: ./.github/workflows/docker-lint.yml
     
-    docker-build-push:
-      needs: docker-lint  
-      uses: ./.github/workflows/docker-build-push.yml
+
