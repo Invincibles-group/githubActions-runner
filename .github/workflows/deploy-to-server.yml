@@ -9,7 +9,7 @@ jobs:
     env:
       DOCKERHUB_USER: ${{ vars.DOCKERHUB_USER }}
       DOCKER_TAG: ${{ github.sha }}
-      
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,6 +45,6 @@ jobs:
             export DOCKERHUB_USER=${{ vars.DOCKERHUB_USER }}
             export DOCKER_TAG=${{ github.sha }}
             echo ${{ secrets.DOCKERHUB_TOKEN }} | sudo docker login --username ${{ vars.DOCKERHUB_USER }} --password-stdin
-            cd ~/app && sudo docker compose down && sudo docker compose up -d --pull always
+            cd ~/app && sudo -E docker compose down && sudo -E docker compose up -d --pull always
 
 
