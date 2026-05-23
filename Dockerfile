@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8082
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "--bind","-b", "0.0.0.0:8082", "app:app"]
